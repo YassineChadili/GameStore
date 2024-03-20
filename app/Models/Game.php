@@ -11,4 +11,10 @@ class Game extends Model
     protected $table = 'games';
 
     protected $guarded = [];
+
+    public function consoles()
+    {
+        return $this->belongsToMany(Console::class, 'game_consoles', 'game_id', 'console_id')
+            ->withTimestamps();
+    }
 }

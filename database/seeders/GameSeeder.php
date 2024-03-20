@@ -13,16 +13,20 @@ class GameSeeder extends Seeder
      */
     public function run(): void
     {
-        Game::create([
+        $game1 = Game::create([
             'name' => 'FIFA 23',
             'image' => 'game1.jpg',
             'price' => 19.99,
         ]);
 
-        Game::create([
+        $game1->consoles()->attach([1, 2]);
+
+        $game2 = Game::create([
             'name' => 'Minecraft',
             'image' => 'game2.jpg',
             'price' => 20,
         ]);
+
+        $game2->consoles()->attach([1, 2, 3]);
     }
 }

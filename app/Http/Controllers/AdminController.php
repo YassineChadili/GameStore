@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Console;
 use App\Models\Game;
 use Illuminate\Http\Request;
 
@@ -23,7 +24,8 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        $consoles = Console::all();
+        return view('admin.create', ['consoles' => $consoles]);
     }
 
     /**
@@ -31,7 +33,33 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'price' => 'required|numeric',
+            'console_ids' => 'required|array',
+            'console_ids.*' => 'exists:consoles,id',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->storeAs('public/img', $imageName);
+            $imageName = 'storage/img/'. $imageName;
+
+            $game = Game::create([
+                'name' => $request->name,
+                'image' => $imageName,
+                'price' => $request->price,
+            ]);
+
+            $game->consoles()->attach($request->input('console_ids', []));
+
+        } else {
+            return redirect()->back()->with('error', 'Geen afbeelding geüpload');
+        }
+      
+        return redirect()->route('admin.index')->with('message', 'Game is succesvol toegevoegd.');
     }
 
     /**
