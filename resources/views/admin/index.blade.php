@@ -1,6 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
-        Welkom bij GameStore!
+        {{ __('Beheerder overzicht') }}
     </x-slot>
-
+    beheerder
+    
 </x-app-layout>

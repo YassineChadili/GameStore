@@ -1,6 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
-        Welkom bij GameStore!
+        {{ __('Klanten overzicht') }}
     </x-slot>
-
+    klanten
+    
 </x-app-layout>
