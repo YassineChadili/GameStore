@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Game;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -11,7 +12,10 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.index');
+        $games = Game::paginate(10);
+        return view('admin.index',[
+            'games' => $games,
+        ]);
     }    
 
     /**
