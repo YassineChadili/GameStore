@@ -15,7 +15,7 @@ class GameSeeder extends Seeder
     {
         $game1 = Game::create([
             'name' => 'FIFA 23',
-            'image' => 'game1.jpg',
+            'image' => 'storage/img/game1.jpg',
             'price' => 19.99,
         ]);
 
@@ -23,7 +23,7 @@ class GameSeeder extends Seeder
 
         $game2 = Game::create([
             'name' => 'Minecraft',
-            'image' => 'game2.jpg',
+            'image' => 'storage/img/game2.jpg',
             'price' => 20,
         ]);
 
