@@ -22,8 +22,8 @@
                 </x-nav-link>
             @endif
             @endauth
-
-            <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+            
+            <x-nav-link :href="route('games.index')" :active="request()->routeIs('games.index')">
                 {{ __('Games') }}
             </x-nav-link>
             <x-nav-link>
