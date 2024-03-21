@@ -10,7 +10,7 @@
             </div>
         @endif
         <div class="px-4 py-5">
-            <x-table :columns="['Naam', 'Foto', 'Prijs', 'Consoles']">
+            <x-table :columns="['Naam', 'Foto', 'Prijs', 'Consoles', 'Aanpassen']">
                 <x-slot name="title">
                     Games overzicht:
                 </x-slot>
@@ -27,6 +27,22 @@
                         <x-table.td>€{{ $game->price }}</x-table.td>
                         <x-table.td>
                             {{ implode(', ', $game->consoles->pluck('name')->toArray()) }}
+                        </x-table.td>
+                        <x-table.td>
+                            <a href="{{ route('admin.edit', $game->id) }}"
+                                class="text-blue-500 hover:underline">Bewerken</a>
+                                <form action="{{ route('admin.destroy', $game->id) }}" method="POST" id="deleteFormoffer{{ $game->id }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="button" onclick="confirmDeleteOffer('{{ $game->id }}')" class="text-red-500 hover:underline">Verwijderen</button>
+                                </form>
+                                <script>
+                                    function confirmDeleteOffer(gameId) {
+                                        if (confirm('Weet je zeker dat je deze game wilt verwijderen?')) {
+                                            document.getElementById('deleteFormoffer' + gameId).submit();
+                                        }
+                                    }
+                                </script>
                         </x-table.td>
                     </tr>
                 @endforeach
