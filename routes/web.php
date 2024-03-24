@@ -32,6 +32,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('games', GameController::class);
+Route::get('/search', [GameController::class, 'search'])->name('search');
 
 Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::resource('admin', AdminController::class);

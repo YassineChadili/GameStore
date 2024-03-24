@@ -18,6 +18,23 @@ class GameController extends Controller
         ]);
     }
 
+    public function search(Request $request)
+    {
+        $search = $request->search;
+        $games = Game::where(function ($query) use ($search) {
+
+            $query->where('name', 'like', "%$search%")
+            ->orWhere('price', 'like', "%$search%");
+        })
+
+        ->orWhereHas('consoles', function ($query) use ($search) {
+            $query->where('name', 'like', "%$search%");
+        })
+    
+        ->paginate(10);
+
+        return view('games.index', ['games' => $games]);
+    }
     /**
      * Show the form for creating a new resource.
      */

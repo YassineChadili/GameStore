@@ -4,6 +4,20 @@
     </x-slot>
 
     <div class="max-w-7xl mx-auto my-8 bg-white shadow overflow-hidden">
+
+        <div class="col-md-6 mt-5 flex justify-center mb-2">
+            <div class="form-group">
+                <form method="get" action="/search">
+                    <div class="flex items-center">
+                        <input class="border border-gray-300 rounded-md p-2 mr-2" name="search" placeholder="Zoek..."
+                            value="{{ isset($search) ? $search : '' }}">
+                        <x-primary-button>
+                            Zoek
+                        </x-primary-button>
+                    </div>
+                </form>
+            </div>
+        </div>
         <div class="px-4 py-5">
 
             <div class="grid grid-cols-4 gap-4 gap-y-12">
