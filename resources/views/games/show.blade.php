@@ -13,6 +13,11 @@
                     Consoles:
                     {{ implode(', ', $game->consoles->pluck('name')->toArray()) }}
                 </div>
+                <div class="pt-5">
+                    <x-primary-button>
+                        <a href="{{ route('invoices.create', ['id' => $game->id]) }}">Game kopen</a>
+                    </x-primary-button>
+                </div>
             </div>
         </div>
     </div>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -40,6 +41,8 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
 
 Route::middleware(['auth', 'verified', 'customer'])->group(function () {
     Route::resource('customer', CustomerController::class);
+    Route::resource('invoices', InvoiceController::class);
+    Route::get('/invoices/create/{id}', [InvoiceController::class, 'create'])->name('invoices.create');
 });
 
 require __DIR__.'/auth.php';

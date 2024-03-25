@@ -14,15 +14,17 @@ class InvoiceSeeder extends Seeder
     public function run(): void
     {
         Invoice::create([
-            'address' => '123 Main Street',
-            'date' => '2024-01-01',
+            'street' => 'Terheijdenseweg 350',
+            'city' => 'Breda',
+            'zip' => '4826 AA',
             'game_id' => 1, 
             'user_id' => 1,
         ]);
 
         Invoice::create([
-            'address' => '456 Elm Street',
-            'date' => '2024-01-01',
+            'street' => 'Terheijdenseweg 350',
+            'city' => 'Breda',
+            'zip' => '4826 AA',
             'game_id' => 2, 
             'user_id' => 2,
         ]);

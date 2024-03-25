@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            $table->string('address');
-            $table->dateTime('date');
+            $table->string('street');
+            $table->string('zip');
+            $table->string('city');
             $table->foreignId('game_id')->references('id')->on('games');
             $table->foreignId('user_id')->references('id')->on('users');
             $table->timestamps();
