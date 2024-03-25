@@ -11,4 +11,14 @@ class Invoice extends Model
     protected $table = 'invoices';
 
     protected $guarded = [];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function game()
+    {
+        return $this->belongsTo(Game::class);
+    }
 }

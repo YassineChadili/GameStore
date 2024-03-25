@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Invoice;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CustomerController extends Controller
 {
@@ -11,7 +13,11 @@ class CustomerController extends Controller
      */
     public function index()
     {   
-        return view('customer.index');
+        $user_id = Auth::id(); // Haal het ID van de ingelogde gebruiker op
+        $invoices = Invoice::where('user_id', $user_id)->paginate(10); // Haal alleen facturen op waarbij user_id gelijk is aan het ID van de ingelogde gebruiker
+        return view('customer.index',[
+            'invoices' => $invoices,
+        ]);
     }
 
 
